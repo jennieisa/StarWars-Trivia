@@ -67,13 +67,16 @@ async function fetchCaracters(name1, name2) {
 
     let searchValue2 = name2.replace("_", " ");
 
-    character1 = await fetchData(`https://swapi.dev/api/people/?search=${searchValue1}`);
+    let data1 = await fetchData(`https://swapi.dev/api/people/?search=${searchValue1}`);
 
-    character2 =  await fetchData(`https://swapi.dev/api/people/?search=${searchValue2}`);
+    array.push(data1.results[0]);
 
-    array.push(character1.results[0]);
+    if (data1) {
 
-    array.push(character2.results[0]);
+        let data2 =  await fetchData(`https://swapi.dev/api/people/?search=${searchValue2}`);
+
+        array.push(data2.results[0]);
+    }
 
     return array;
 
@@ -93,7 +96,11 @@ compareCharactersBtn.addEventListener("click", async (e) => {
 
     characters = await fetchCaracters(selectedCharacter1, selectedCharacter2); 
 
-    console.log(characters)
+    character1 = new Characters(characters[0].name, characters[0].gender, characters[0].height, characters[0].mass, characters[0].hair_color);
+
+    character2 = new Characters(characters[1].name, characters[1].gender, characters[1].height, characters[1].mass, characters[1].hair_color);
+
+    console.log(character1, character2);
 
 })
 
