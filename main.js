@@ -16,7 +16,31 @@ class Characters {
 
     }
 
-    compareMass() {
+    compareMass(character) {
+
+        let result = "";
+
+        let sum = "";
+
+        if(this.mass < character.mass) {
+
+            sum = parseInt(this.mass) / parseInt(character.mass);
+            
+            result = `<p>${character.name} väger ${Math.round(sum)} % mer än mig. </p>`;
+            
+        } else if (this.mass > character.mass) {
+
+            sum = parseInt(character.mass) / parseInt(this.mass);
+            
+            result = `<p>${character.name} väger ${Math.round(sum)}% mindre än mig. </p>`;
+
+        } else {
+
+            result = `<p>${character.name} väger lika mycket som mig!</p>`;
+
+        }
+
+        return result;
 
     }
 
@@ -37,6 +61,11 @@ class Characters {
 
 //Hämtar från DOM:en
 const compareCharactersBtn = document.querySelector(".compareCharactersBtn");
+
+const character1Wrapper = document.querySelector(".character1Info");
+
+const character2Wrapper = document.querySelector(".character2Info")
+
 
 let character1 = "";
 
@@ -103,10 +132,6 @@ function getRightImage(character) {
 
 function drawCharacter(character1, character2) {
 
-    const character1Wrapper = document.querySelector(".character1Info");
-
-    const character2Wrapper = document.querySelector(".character2Info")
-
     const character1Content = `
         <h2>${character1.name}</h2>
         <img src="${character1.pictureUrl}" alt="image of ${character1.name}"><img>   
@@ -130,7 +155,6 @@ function drawCharacter(character1, character2) {
     character2Wrapper.innerHTML = character2Content;
  
 }
-
 
 compareCharactersBtn.addEventListener("click", async (e) => {
 
@@ -157,6 +181,28 @@ compareCharactersBtn.addEventListener("click", async (e) => {
     console.log(character1, character2);
 
     drawCharacter(character1, character2);
+
+    const character1WeightBtn = document.querySelector("#character1WeightBtn");
+
+    character1WeightBtn.addEventListener("click", () => {
+
+        const result = character1.compareMass(character2);
+        
+        character1Wrapper.innerHTML += result;
+
+    })
+
+    const character2WeightBtn = document.querySelector("#character2WeightBtn")
+
+    character2WeightBtn.addEventListener("click", () => {
+
+        const result = character2.compareMass(character1);
+
+        character2Wrapper.innerHTML += result;
+
+    })
+
+    
 
 })
 
