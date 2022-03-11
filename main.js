@@ -26,17 +26,17 @@ class Characters {
 
             sum = parseInt(this.mass) / parseInt(character.mass);
             
-            result = `<p>${character.name} väger ${Math.round(sum)} % mer än mig. </p>`;
+            result = `<p>${character.name} weighs ${Math.round(sum)} % more than me. </p>`;
             
         } else if (this.mass > character.mass) {
 
             sum = parseInt(character.mass) / parseInt(this.mass);
             
-            result = `<p>${character.name} väger ${Math.round(sum)}% mindre än mig. </p>`;
+            result = `<p>${character.name} weighs ${Math.round(sum)}% less than me. </p>`;
 
         } else {
 
-            result = `<p>${character.name} väger lika mycket som mig!</p>`;
+            result = `<p>${character.name} weighs as much as me!</p>`;
 
         }
 
@@ -54,28 +54,60 @@ class Characters {
 
             sum = parseInt(this.height) / parseInt(character.height);
             
-            result = `<p>${character.name} är ${Math.round(sum)} % längre än mig. </p>`;
+            result = `<p>${character.name} is ${Math.round(sum)} % taller than me. </p>`;
             
         } else if (this.height > character.height) {
 
             sum = parseInt(character.height) / parseInt(this.height);
             
-            result = `<p>${character.name} är ${Math.round(sum)}% kortare än mig. </p>`;
+            result = `<p>${character.name} is ${Math.round(sum)}% shorter than me. </p>`;
 
         } else {
 
-            result = `<p>${character.name} är lika lång som mig!</p>`;
+            result = `<p>${character.name} is as tall as me!</p>`;
 
         }
 
         return result;
     }
 
-    compareHairColor() {
+    compareHairColor(character) {
+
+        let result = "";
+
+        if(this.hairColor === character.hairColor) {
+
+            result = `${character.name}'s hair color is ${character.hairColor}. We have the same hair color!`;
+
+            return result;
+
+        } else {
+
+            result = `${character.name}'s hair color is ${character.hairColor}. We do not have the same hair color. `;
+
+            return result;
+
+        }
 
     }
 
-    compareGender() {
+    compareGender(character) {
+
+        let result = "";
+
+        if (this.gender === character.gender) {
+
+            result = `${character.name} is a ${character.gender}. We have the same sex!`;
+
+            return result;
+
+        } else {
+
+            result = `${character.name} is a ${character.gender}.`;
+
+            return result;
+
+        }
         
     }
 
@@ -137,9 +169,14 @@ function getRightImage(character) {
 
     let rightImageUrl = "";
 
-    if (character.includes("-")) {
+    if (character.includes("-") && character.includes(" ")) {
+
+        rightImageUrl = `/images/${character.toLowerCase().replace("-", "_").replace(" ", "_")}.jpg`;
+
+    } else if(character.includes("-")) {
 
         rightImageUrl = `/images/${character.toLowerCase().replace("-", "_")}.jpg`;
+
 
     } else {
 
@@ -158,20 +195,20 @@ function drawCharacter(character1, character2) {
     const character1Content = `
         <h2>${character1.name}</h2>
         <img src="${character1.pictureUrl}" alt="image of ${character1.name}"><img>   
-        <button class="character1QuestionBtn" id="character1WeightBtn">Hur mycket väger ${character2.name}?</button>
-        <button class="character1QuestionBtn" id="character1HeightBtn">Hur lång är ${character2.name}?</button>
-        <button class="character1QuestionBtn" id="character1HairColorBtn">Vilken hårfärg har ${character2.name}?</button>
-        <button class="character1QuestionBtn" id="character1GenderBtn">Vilket kön har ${character2.name}?</button>
+        <button class="character1QuestionBtn" id="character1WeightBtn">How much does ${character2.name} weigh?</button>
+        <button class="character1QuestionBtn" id="character1HeightBtn">How tall is ${character2.name}?</button>
+        <button class="character1QuestionBtn" id="character1HairColorBtn">What hair color does ${character2.name} have?</button>
+        <button class="character1QuestionBtn" id="character1GenderBtn">What gender is ${character2.name}?</button>
         <article class="character1Answ"></article>
     `;
 
     const character2Content = `
         <h2>${character2.name}</h2>
         <img src="${character2.pictureUrl}" alt="image of ${character2.name}"><img>  
-        <button class="character2QuestionBtn" id="character2WeightBtn">Hur mycket väger ${character1.name}?</button>
-        <button class="character2QuestionBtn" id="character2HeightBtn">Hur lång är ${character1.name}?</button>
-        <button class="character2QuestionBtn" id="character2HairColorBtn">Vilken hårfärg har ${character1.name}?</button>
-        <button class="character2QuestionBtn" id="character2GenderBtn">Vilket kön har ${character1.name}?</button>
+        <button class="character2QuestionBtn" id="character2WeightBtn">How much does ${character1.name} weigh?</button>
+        <button class="character2QuestionBtn" id="character2HeightBtn">How tall is ${character1.name}?</button>
+        <button class="character2QuestionBtn" id="character2HairColorBtn">What hair color does ${character1.name} have?</button>
+        <button class="character2QuestionBtn" id="character2GenderBtn">What gender is ${character1.name}?</button>
         <article class="character2Answ"></article>
     `;
 
@@ -259,5 +296,36 @@ compareCharactersBtn.addEventListener("click", async (e) => {
 
     })
 
+    character1HairColorBtn.addEventListener("click", () => {
+        
+        let result = character1.compareHairColor(character2);
+
+        character1Answ.innerHTML = result;
+
+    })
+
+    character2HairColorBtn.addEventListener("click", () => {
+
+        let result = character2.compareHairColor(character1);
+
+        character2Answ.innerHTML = result;
+
+    })
+
+    character1GenderBtn.addEventListener("click", () => {
+
+        let result = character1.compareGender(character2);
+
+        character1Answ.innerHTML = result;
+
+    })
+
+    character2GenderBtn.addEventListener("click", () => {
+
+        let result = character2.compareGender(character1);
+
+        character2Answ.innerHTML = result;
+
+    })
 })
 
