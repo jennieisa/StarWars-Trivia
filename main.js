@@ -22,17 +22,17 @@ class Characters {
 
         let sum = "";
 
-        if(this.mass < character.mass) {
+        if(parseInt(this.mass) < parseInt(character.mass)) {
 
-            sum = parseInt(this.mass) / parseInt(character.mass);
+            sum = parseInt(character.mass) - parseInt(this.mass);
             
-            result = `<p>${character.name} weighs ${Math.round(sum)} % more than me. </p>`;
+            result = `<p>${character.name} weighs ${Math.round(sum)} kilos more than me. </p>`;
             
-        } else if (this.mass > character.mass) {
+        } else if (parseInt(this.mass) > parseInt(character.mass)) {
 
-            sum = parseInt(character.mass) / parseInt(this.mass);
+            sum = parseInt(this.mass) - parseInt(character.mass);
             
-            result = `<p>${character.name} weighs ${Math.round(sum)}% less than me. </p>`;
+            result = `<p>${character.name} weighs ${Math.round(sum)} kilos less than me. </p>`;
 
         } else {
 
@@ -50,17 +50,17 @@ class Characters {
 
         let sum = "";
 
-        if(this.height < character.height) {
+        if(parseInt(this.height) < parseInt(character.height)) {
 
-            sum = parseInt(this.height) / parseInt(character.height);
+            sum = parseInt(character.height) - parseInt(this.height);
             
-            result = `<p>${character.name} is ${Math.round(sum)} % taller than me. </p>`;
+            result = `<p>${character.name} is ${Math.round(sum)} centimeter taller than me. </p>`;
             
-        } else if (this.height > character.height) {
+        } else if (parseInt(this.height) > parseInt(character.height)) {
 
-            sum = parseInt(character.height) / parseInt(this.height);
+            sum = parseInt(this.height) - parseInt(character.height);
             
-            result = `<p>${character.name} is ${Math.round(sum)}% shorter than me. </p>`;
+            result = `<p>${character.name} is ${Math.round(sum)} centimeter shorter than me. </p>`;
 
         } else {
 
