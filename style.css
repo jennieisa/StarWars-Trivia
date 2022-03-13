@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@700;900&family=Lora&family=Roboto+Condensed:wght@300;400&family=Roboto+Serif:wght@300&family=Roboto:wght@300;400&family=Rock+Salt&family=Viga&display=swap");
 body {
   margin: 0px;
 }
@@ -14,6 +15,11 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.siteWrapper h1 {
+  font-family: "Kanit", sans-serif;
+  font-weight: 900;
 }
 
 .starWarsContent {
@@ -41,11 +47,44 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 15px;
 }
 
 .chooseCharactersForm select {
   width: 150px;
   margin: 5px;
   margin-bottom: 20px;
+}
+
+.charactersInfo section {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 10px;
+  border: 1px solid black;
+  padding: 15px;
+}
+
+.charactersInfo section h2 {
+  font-family: "Kanit", sans-serif;
+}
+
+.charactersInfo section img {
+  height: auto;
+  width: 300px;
+  margin: 10px;
+  margin-top: 5px;
+}
+
+.charactersInfo section button {
+  width: 70%;
+  padding: 5px;
+  margin: 5px;
+  font-family: "Roboto Condensed", sans-serif;
 }
 /*# sourceMappingURL=style.css.map */

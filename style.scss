@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@700;900&family=Lora&family=Roboto+Condensed:wght@300;400&family=Roboto+Serif:wght@300&family=Roboto:wght@300;400&family=Rock+Salt&family=Viga&display=swap');
+
 //Placering
 body {
     margin: 0px;
@@ -8,6 +10,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    h1 {
+        font-family: "Kanit", sans-serif;
+        font-weight: 900;
+    }
 }
 
 .starWarsContent {
@@ -21,6 +28,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 15px;
 
     select {
         width: 150px;
@@ -28,3 +36,31 @@ body {
         margin-bottom: 20px;
     }
 }
+
+.charactersInfo section {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    border: 1px solid black;
+    padding: 15px;
+
+    h2 {
+        font-family: "Kanit", sans-serif; 
+    }
+
+    img {
+        height: auto;
+        width: 300px;
+        margin: 10px;
+        margin-top: 5px;
+    }
+
+    button {
+        width: 70%;
+        padding: 5px;
+        margin: 5px;
+        font-family: "Roboto Condensed", sans-serif;
+    }
+}
+

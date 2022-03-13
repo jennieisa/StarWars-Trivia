@@ -115,7 +115,7 @@ class Characters {
 }
 
 //Hämtar från DOM:en
-const compareCharactersBtn = document.querySelector(".compareCharactersBtn");
+const showCharactersBtn = document.querySelector(".showCharactersBtn");
 
 const character1Wrapper = document.querySelector(".character1Info");
 
@@ -133,6 +133,7 @@ function ifCharacterIsAlreadyChoosen() {
 
 }
 
+//Funktion som hämtar data
 async function fetchData(url) {
 
     const response = await fetch(url)
@@ -143,6 +144,7 @@ async function fetchData(url) {
 
 }
 
+//Funktion som hämtar rätt karaktärer
 async function fetchCaracters(name1, name2) {
 
     let array = [];
@@ -150,8 +152,6 @@ async function fetchCaracters(name1, name2) {
     let searchValue1 = name1.replace("_", " ");
 
     let searchValue2 = name2.replace("_", " ");
-
-    console.log(searchValue1, searchValue2)
 
     let data1 = await fetchData(`https://swapi.dev/api/people/?search=${searchValue1}`);
 
@@ -165,6 +165,7 @@ async function fetchCaracters(name1, name2) {
 
 }
 
+//Funktion som hämtar rätt karaktärbild 
 function getRightImage(character) {
 
     let rightImageUrl = "";
@@ -184,12 +185,11 @@ function getRightImage(character) {
 
     }
 
-    console.log(rightImageUrl);
-
     return rightImageUrl;
 
 }
 
+//Funktion som ritar ut valda karaktärer i DOM:en
 function drawCharacter(character1, character2) {
 
     const character1Content = `
@@ -218,7 +218,8 @@ function drawCharacter(character1, character2) {
  
 }
 
-compareCharactersBtn.addEventListener("click", async (e) => {
+//Händelseförlopp när man klickar på compare
+showCharactersBtn.addEventListener("click", async (e) => {
 
     e.preventDefault();
 
@@ -226,11 +227,11 @@ compareCharactersBtn.addEventListener("click", async (e) => {
 
     const selectedCharacter2 = document.querySelector("#character2").value;
 
-    console.log(selectedCharacter1, selectedCharacter2)
-
     characters = await fetchCaracters(selectedCharacter1, selectedCharacter2); 
 
-    console.log(characters)
+    character1Wrapper.style.display = "flex";
+
+    character2Wrapper.style.display = "flex";
 
     let imageURLChar1 = getRightImage(characters[0].name);
 
@@ -239,8 +240,6 @@ compareCharactersBtn.addEventListener("click", async (e) => {
     character1 = new Characters(characters[0].name, characters[0].gender, characters[0].height, characters[0].mass, characters[0].hair_color, imageURLChar1);
 
     character2 = new Characters(characters[1].name, characters[1].gender, characters[1].height, characters[1].mass, characters[1].hair_color, imageURLChar2);
-
-    console.log(character1, character2);
 
     drawCharacter(character1, character2);
 
