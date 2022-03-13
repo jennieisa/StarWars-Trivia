@@ -44,7 +44,7 @@
 }
 
 @mixin shadowBorder {
-    box-shadow: 2px 2px 5px $raisin-black;
+    box-shadow: 10px 10px rgba(0,0,0,0.2);
     border-radius: 15px;
     border: none;
 }
@@ -137,6 +137,20 @@ body {
 
 }
 
+.character1Answ, .character2Answ {
+    position: relative;
+    background-color: white;
+    width: 150px;
+    padding: 10px;
+    border-radius: 15px;
+    @include bodyText(13px, $raisin-black);
+    box-shadow: 10px 10px rgba(0,0,0,0.2);
+
+    p {
+        word-wrap: break-word;
+    }
+
+}
 
 button {
     @include buttonStyle($raisin-black, #fff, 70%);

@@ -172,16 +172,16 @@ function getRightImage(character) {
 
     if (character.includes("-") && character.includes(" ")) {
 
-        rightImageUrl = `/images/${character.toLowerCase().replace("-", "_").replace(" ", "_")}.jpg`;
+        rightImageUrl = `/images/${character.toLowerCase().replace("-", "_").replace(" ", "_")}.png`;
 
     } else if(character.includes("-")) {
 
-        rightImageUrl = `/images/${character.toLowerCase().replace("-", "_")}.jpg`;
+        rightImageUrl = `/images/${character.toLowerCase().replace("-", "_")}.png`;
 
 
     } else {
 
-        rightImageUrl = `/images/${character.toLowerCase().replace(" ", "_")}.jpg`;
+        rightImageUrl = `/images/${character.toLowerCase().replace(" ", "_")}.png`;
 
     }
 
@@ -194,22 +194,23 @@ function drawCharacter(character1, character2) {
 
     const character1Content = `
         <h2>${character1.name}</h2>
-        <img src="${character1.pictureUrl}" alt="image of ${character1.name}"><img>   
+        <div class="character1Answ">Ask me something about ${character2.name} by clicking on any of the buttons below.</div>
+        <img src="${character1.pictureUrl}" alt="image of ${character1.name}"></img>   
         <button class="character1QuestionBtn" id="character1WeightBtn">How much does ${character2.name} weigh?</button>
         <button class="character1QuestionBtn" id="character1HeightBtn">How tall is ${character2.name}?</button>
         <button class="character1QuestionBtn" id="character1HairColorBtn">What hair color does ${character2.name} have?</button>
         <button class="character1QuestionBtn" id="character1GenderBtn">What gender is ${character2.name}?</button>
-        <article class="character1Answ"></article>
     `;
 
     const character2Content = `
         <h2>${character2.name}</h2>
+        <div class="character2Answ">Ask me something about ${character2.name} by clicking on any of the buttons below.</div>
         <img src="${character2.pictureUrl}" alt="image of ${character2.name}"><img>  
         <button class="character2QuestionBtn" id="character2WeightBtn">How much does ${character1.name} weigh?</button>
         <button class="character2QuestionBtn" id="character2HeightBtn">How tall is ${character1.name}?</button>
         <button class="character2QuestionBtn" id="character2HairColorBtn">What hair color does ${character1.name} have?</button>
         <button class="character2QuestionBtn" id="character2GenderBtn">What gender is ${character1.name}?</button>
-        <article class="character2Answ"></article>
+
     `;
 
     character1Wrapper.innerHTML = character1Content;
