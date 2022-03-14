@@ -22,21 +22,21 @@ class Characters {
 
         let sum = "";
 
-        if(parseInt(this.mass) < parseInt(character.mass)) {
+        if (parseInt(this.mass) < parseInt(character.mass)) {
 
             sum = parseInt(character.mass) - parseInt(this.mass);
             
-            result = `<p>${character.name} weighs ${Math.round(sum)} kilos more than me. </p>`;
+            result = `<p>${character.name} weighs ${character.mass} kilos. It is ${Math.round(sum)} kilos more than me. </p>`;
             
         } else if (parseInt(this.mass) > parseInt(character.mass)) {
 
             sum = parseInt(this.mass) - parseInt(character.mass);
             
-            result = `<p>${character.name} weighs ${Math.round(sum)} kilos less than me. </p>`;
+            result = `<p>${character.name} weighs ${character.mass} kilos. It is ${Math.round(sum)} kilos less than me. </p>`;
 
         } else {
 
-            result = `<p>${character.name} weighs as much as me!</p>`;
+            result = `<p>${character.name} weighs ${character.mass}. As much as I weigh!</p>`;
 
         }
 
@@ -54,17 +54,17 @@ class Characters {
 
             sum = parseInt(character.height) - parseInt(this.height);
             
-            result = `<p>${character.name} is ${Math.round(sum)} centimeter taller than me. </p>`;
+            result = `<p>${character.name} is ${character.height} centimeter tall. It is ${Math.round(sum)} centimeter taller than me. </p>`;
             
         } else if (parseInt(this.height) > parseInt(character.height)) {
 
             sum = parseInt(this.height) - parseInt(character.height);
             
-            result = `<p>${character.name} is ${Math.round(sum)} centimeter shorter than me. </p>`;
+            result = `<p>${character.name} is ${character.height} centimeter tall. It is ${Math.round(sum)} centimeter shorter than me. </p>`;
 
         } else {
 
-            result = `<p>${character.name} is as tall as me!</p>`;
+            result = `<p>${character.name} is ${character.height} centimeter tall. We are the same length!</p>`;
 
         }
 
@@ -75,15 +75,41 @@ class Characters {
 
         let result = "";
 
-        if(this.hairColor === character.hairColor) {
+        if (this.hairColor === "n/a" || this.hairColor === "none") {
 
-            result = `${character.name}'s hair color is ${character.hairColor}. We have the same hair color!`;
+            if (character.hairColor === "n/a" || character.hairColor === "none") {
+
+                console.log("1")
+
+                result = `<p>Me and ${character.name} do not have any hair!!!</p>`
+
+                return result;
+
+            } else {
+
+                console.log("2")
+
+                result = `<p>${character.name}'s hair color is ${character.hairColor}. I do not have any hair.</p>`;
+
+                return result;
+
+            }
+
+        } else if (this.hairColor === character.hairColor) {
+
+            result = `<p>${character.name}'s hair color is ${character.hairColor}. We have the same hair color!</p>`;
+
+            return result;
+
+        } else if (character.hairColor === "n/a" ||character.hairColor === "none") {
+
+            result = `<p>${character.name} do not have any hair! My hair color is ${this.hairColor}. </p>`;
 
             return result;
 
         } else {
-
-            result = `${character.name}'s hair color is ${character.hairColor}. We do not have the same hair color. `;
+            
+            result = `<p>${character.name}'s hair color is ${character.hairColor}. My hair color is ${this.hairColor}. </p>`;
 
             return result;
 
@@ -95,15 +121,37 @@ class Characters {
 
         let result = "";
 
-        if (this.gender === character.gender) {
+        if (this.gender === "n/a" || character.gender === "n/a") {
 
-            result = `${character.name} is a ${character.gender}. We have the same sex!`;
+            if (this.gender === "n/a" && character.gender === "n/a") {
+
+                result = `<p>${character.name} does not define itself as a female or a male. Neither do I.</p>`;
+
+                return result;
+
+            } else if (this.gender === "n/a" && character.gender !== "n/a") {
+
+                result = `<p>${character.name} define itself as a ${character.gender}. I do not define myself as a female or a male.</p>`;
+
+                return result;
+
+            } else if (this.gender !== "n/a" && character.gender === "n/a") {
+
+                result = `<p>${character.name} does not define itself as a female or a male. I define myself as a ${this.gender}.</p>`;
+
+                return result;
+
+            }
+
+        } else if (this.gender === character.gender) {
+
+            result = `<p>${character.name} define itself as a ${character.gender}. We both define ourselves as ${character.gender}.</p>`;
 
             return result;
 
         } else {
 
-            result = `${character.name} is a ${character.gender}.`;
+            result = `<p>${character.name} define itself as a ${character.gender}. I define myself as a ${this.gender}.</p>`;
 
             return result;
 
@@ -127,11 +175,6 @@ let character1 = "";
 let character2 = "";
 
 let characters = [];
-
-//EXTRA
-function ifCharacterIsAlreadyChoosen() {
-
-}
 
 //Funktion som hämtar data
 async function fetchData(url) {
@@ -194,7 +237,9 @@ function drawCharacter(character1, character2) {
 
     const character1Content = `
         <h2>${character1.name}</h2>
-        <div class="character1Answ">Ask me something about ${character2.name} by clicking on any of the buttons below.</div>
+        <div class="character1Answ">
+            Ask me something about ${character2.name} by clicking on any of the buttons below.
+        </div>
         <img src="${character1.pictureUrl}" alt="image of ${character1.name}"></img>   
         <button class="character1QuestionBtn" id="character1WeightBtn">How much does ${character2.name} weigh?</button>
         <button class="character1QuestionBtn" id="character1HeightBtn">How tall is ${character2.name}?</button>
@@ -204,8 +249,9 @@ function drawCharacter(character1, character2) {
 
     const character2Content = `
         <h2>${character2.name}</h2>
-        <div class="character2Answ">Ask me something about ${character2.name} by clicking on any of the buttons below.</div>
-        <img src="${character2.pictureUrl}" alt="image of ${character2.name}"><img>  
+        <div class="character2Answ">Ask me something about ${character1.name} by clicking on any of the buttons below.</div>
+        <div class="cloud"></div>
+        <img src="${character2.pictureUrl}" alt="image of ${character2.name}"></img>  
         <button class="character2QuestionBtn" id="character2WeightBtn">How much does ${character1.name} weigh?</button>
         <button class="character2QuestionBtn" id="character2HeightBtn">How tall is ${character1.name}?</button>
         <button class="character2QuestionBtn" id="character2HairColorBtn">What hair color does ${character1.name} have?</button>
@@ -219,7 +265,7 @@ function drawCharacter(character1, character2) {
  
 }
 
-//Händelseförlopp när man klickar på compare
+//Händelseförlopp när man klickar på compare och frågeknapparna
 showCharactersBtn.addEventListener("click", async (e) => {
 
     e.preventDefault();

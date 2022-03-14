@@ -23,8 +23,8 @@
     font-size: 15px;
     cursor: pointer;
     padding: 5px;
-    width: 70%;
-    margin: 5px;
+    width: $width;
+    margin: 10px;
     background-color: $backgroundcolor;
     color: $color;
 }
@@ -43,10 +43,22 @@
     align-items: $vertically;
 }
 
-@mixin shadowBorder {
+@mixin cardShadowAndBorder {
     box-shadow: 10px 10px rgba(0,0,0,0.2);
     border-radius: 15px;
     border: none;
+}
+
+@mixin buttonShadow {
+    box-shadow: 5px 5px rgba(0,0,0,0.4);
+    border-radius: 30px;
+    border: solid 4px rgba(0,0,0,0.1);
+}
+
+@mixin biggerScreen {
+    @media (min-width: 1030px) {
+        @content   
+    }
 }
 
 //Variabler//
@@ -102,7 +114,8 @@ body {
         cursor: pointer;
         font-family: "Roboto condensed";
         font-size: 15px;
-        @include shadowBorder;
+        border: none;
+        border-radius: 15px;
     }
 
     button {
@@ -114,6 +127,10 @@ body {
     @include flexColumn(center, center);
     width: 100%;
 
+    @include biggerScreen {
+        flex-direction: row;
+    }
+
     section {
         background-color: $almond;
         display: none;
@@ -121,30 +138,41 @@ body {
         align-items: center;
         margin: 10px;
         padding: 15px;
-        @include shadowBorder;
+        @include cardShadowAndBorder;
+        width: 100%;
+        height: 700px;
+
+        @include biggerScreen {
+            width: 40%;
+            height: 700px;
+        }
     
         h2 {
-            @include heading(20px, #000);
+            @include heading(25px, #000);
+            margin: 0px 0px 5px 0px;
         }
-    
+
         img {
-            height: auto;
-            width: 300px;
-            margin: 10px;
-            margin-top: 5px;
+            margin-top: 15px;
+            height: 40%;
+            width: auto;
+            margin: 30px;
         }
+
+
     }
 
 }
 
 .character1Answ, .character2Answ {
-    position: relative;
     background-color: white;
-    width: 150px;
+    width: 190px;
     padding: 10px;
     border-radius: 15px;
-    @include bodyText(13px, $raisin-black);
+    @include bodyText(15px, $raisin-black);
     box-shadow: 10px 10px rgba(0,0,0,0.2);
+    min-width: 300px;
+    min-height: 80px;
 
     p {
         word-wrap: break-word;
@@ -153,6 +181,10 @@ body {
 }
 
 button {
-    @include buttonStyle($raisin-black, #fff, 70%);
-    @include shadowBorder;
+    @include buttonStyle(white, rgb(83, 90, 112), 90%);
+    @include buttonShadow();
+}
+
+button:hover {
+    transform: scale(1.1);
 }
