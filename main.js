@@ -75,15 +75,41 @@ class Characters {
 
         let result = "";
 
-        if(this.hairColor === character.hairColor) {
+        if (this.hairColor === "n/a" || this.hairColor === "none") {
+
+            if (character.hairColor === "n/a" || character.hairColor === "none") {
+
+                console.log("1")
+
+                result = `<p>Me and ${character.name} do not have any hair!!!</p>`
+
+                return result;
+
+            } else {
+
+                console.log("2")
+
+                result = `<p>${character.name}'s hair color is ${character.hairColor}. I do not have any hair.</p>`;
+
+                return result;
+
+            }
+
+        } else if (this.hairColor === character.hairColor) {
 
             result = `<p>${character.name}'s hair color is ${character.hairColor}. We have the same hair color!</p>`;
 
             return result;
 
-        } else {
+        } else if (character.hairColor === "n/a" ||character.hairColor === "none") {
 
-            result = `<p>${character.name}'s hair color is ${character.hairColor}. We do not have the same hair color.</p>`;
+            result = `<p>${character.name} do not have any hair! My hair color is ${this.hairColor}. </p>`;
+
+            return result;
+
+        } else {
+            
+            result = `<p>${character.name}'s hair color is ${character.hairColor}. My hair color is ${this.hairColor}. </p>`;
 
             return result;
 
@@ -95,15 +121,37 @@ class Characters {
 
         let result = "";
 
-        if (this.gender === character.gender) {
+        if (this.gender === "n/a" || character.gender === "n/a") {
 
-            result = `<p>${character.name} is a ${character.gender}. We have the same gender!</p>`;
+            if (this.gender === "n/a" && character.gender === "n/a") {
+
+                result = `<p>${character.name} does not define itself as a female or a male. Neither do I.</p>`;
+
+                return result;
+
+            } else if (this.gender === "n/a" && character.gender !== "n/a") {
+
+                result = `<p>${character.name} define itself as a ${character.gender}. I do not define myself as a female or a male.</p>`;
+
+                return result;
+
+            } else if (this.gender !== "n/a" && character.gender === "n/a") {
+
+                result = `<p>${character.name} does not define itself as a female or a male. I define myself as a ${this.gender}.</p>`;
+
+                return result;
+
+            }
+
+        } else if (this.gender === character.gender) {
+
+            result = `<p>${character.name} define itself as a ${character.gender}. We both define ourselves as ${character.gender}.</p>`;
 
             return result;
 
         } else {
 
-            result = `<p>${character.name} is a ${character.gender}.</p>`;
+            result = `<p>${character.name} define itself as a ${character.gender}. I define myself as a ${this.gender}.</p>`;
 
             return result;
 
@@ -127,11 +175,6 @@ let character1 = "";
 let character2 = "";
 
 let characters = [];
-
-//EXTRA
-function ifCharacterIsAlreadyChoosen() {
-
-}
 
 //Funktion som hämtar data
 async function fetchData(url) {
