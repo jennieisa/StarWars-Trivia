@@ -22,21 +22,21 @@ class Characters {
 
         let sum = "";
 
-        if(parseInt(this.mass) < parseInt(character.mass)) {
+        if (parseInt(this.mass) < parseInt(character.mass)) {
 
             sum = parseInt(character.mass) - parseInt(this.mass);
             
-            result = `<p>${character.name} weighs ${Math.round(sum)} kilos more than me. </p>`;
+            result = `<p>${character.name} weighs ${character.mass} kilos. It is ${Math.round(sum)} kilos more than me. </p>`;
             
         } else if (parseInt(this.mass) > parseInt(character.mass)) {
 
             sum = parseInt(this.mass) - parseInt(character.mass);
             
-            result = `<p>${character.name} weighs ${Math.round(sum)} kilos less than me. </p>`;
+            result = `<p>${character.name} weighs ${character.mass} kilos. It is ${Math.round(sum)} kilos less than me. </p>`;
 
         } else {
 
-            result = `<p>${character.name} weighs as much as me!</p>`;
+            result = `<p>${character.name} weighs ${character.mass}. As much as I weigh!</p>`;
 
         }
 
@@ -54,17 +54,17 @@ class Characters {
 
             sum = parseInt(character.height) - parseInt(this.height);
             
-            result = `<p>${character.name} is ${Math.round(sum)} centimeter taller than me. </p>`;
+            result = `<p>${character.name} is ${character.height} centimeter tall. It is ${Math.round(sum)} centimeter taller than me. </p>`;
             
         } else if (parseInt(this.height) > parseInt(character.height)) {
 
             sum = parseInt(this.height) - parseInt(character.height);
             
-            result = `<p>${character.name} is ${Math.round(sum)} centimeter shorter than me. </p>`;
+            result = `<p>${character.name} is ${character.height} centimeter tall. It is ${Math.round(sum)} centimeter shorter than me. </p>`;
 
         } else {
 
-            result = `<p>${character.name} is as tall as me!</p>`;
+            result = `<p>${character.name} is ${character.height} centimeter tall. We are the same length!</p>`;
 
         }
 
@@ -77,13 +77,13 @@ class Characters {
 
         if(this.hairColor === character.hairColor) {
 
-            result = `${character.name}'s hair color is ${character.hairColor}. We have the same hair color!`;
+            result = `<p>${character.name}'s hair color is ${character.hairColor}. We have the same hair color!</p>`;
 
             return result;
 
         } else {
 
-            result = `${character.name}'s hair color is ${character.hairColor}. We do not have the same hair color. `;
+            result = `<p>${character.name}'s hair color is ${character.hairColor}. We do not have the same hair color.</p>`;
 
             return result;
 
@@ -97,13 +97,13 @@ class Characters {
 
         if (this.gender === character.gender) {
 
-            result = `${character.name} is a ${character.gender}. We have the same gender!`;
+            result = `<p>${character.name} is a ${character.gender}. We have the same gender!</p>`;
 
             return result;
 
         } else {
 
-            result = `${character.name} is a ${character.gender}.`;
+            result = `<p>${character.name} is a ${character.gender}.</p>`;
 
             return result;
 
@@ -222,7 +222,7 @@ function drawCharacter(character1, character2) {
  
 }
 
-//Händelseförlopp när man klickar på compare
+//Händelseförlopp när man klickar på compare och frågeknapparna
 showCharactersBtn.addEventListener("click", async (e) => {
 
     e.preventDefault();

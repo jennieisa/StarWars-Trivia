@@ -56,7 +56,7 @@
 }
 
 @mixin biggerScreen {
-    @media (min-width: 830px) {
+    @media (min-width: 1030px) {
         @content   
     }
 }

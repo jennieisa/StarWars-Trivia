@@ -106,7 +106,7 @@ body {
   width: 100%;
 }
 
-@media (min-width: 830px) {
+@media (min-width: 1030px) {
   .charactersInfo {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -135,7 +135,7 @@ body {
   height: 700px;
 }
 
-@media (min-width: 830px) {
+@media (min-width: 1030px) {
   .charactersInfo section {
     width: 40%;
     height: 700px;
